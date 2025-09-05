@@ -1,5 +1,7 @@
+from datetime import datetime, timedelta
 import pytest 
 from django.urls import reverse
+from tracker.models import Category
 
 @pytest.mark.django_db
 def test_total_values_appear_on_list_page(user_transactions, client):
@@ -14,3 +16,107 @@ def test_total_values_appear_on_list_page(user_transactions, client):
     assert response.context['total_income'] == income_total
     assert response.context['total_expense'] == expense_total
     assert response.context['net_total'] == net
+
+@pytest.mark.django_db
+def test_transaction_type_filter(user_transactions, client):
+    user = user_transactions[0].user
+    client.force_login(user)
+
+    #income check
+    GET_params = {'transaction_type': 'income'}
+    response = client.get(reverse('transactions-list'), GET_params)
+
+    qs = response.context['filter'].qs
+    
+    for transaction in qs:
+        assert transaction.type == 'income'
+
+
+    #expense check
+    GET_params = {'transaction_type': 'expense'}
+    response = client.get(reverse('transactions-list'), GET_params)
+
+    qs = response.context['filter'].qs
+    
+    for transaction in qs:
+        assert transaction.type == 'expense'
+
+@pytest.mark.django_db
+def test_start_end_date_filter(user_transactions, client):
+    user = user_transactions[0].user
+    client.force_login(user)
+
+    start_date_cutoff = datetime.now().date() - timedelta(days=120)
+    GET_params = {'start_date': start_date_cutoff}
+    response = client.get(reverse('transactions-list'), GET_params)
+
+    qs = response.context['filter'].qs
+
+    for transaction in qs:
+        assert transaction.date >= start_date_cutoff
+
+    
+    end_date_cutoff = datetime.now().date() - timedelta(days=20)
+    GET_params = {'end_date': end_date_cutoff}
+    response = client.get(reverse('transactions-list'), GET_params)
+
+    qs = response.context['filter'].qs
+
+    for transaction in qs:
+        assert transaction.date <= end_date_cutoff
+
+
+
+@pytest.mark.django_db
+def test_date_range_filter(user_transactions, client):
+    user = user_transactions[0].user
+    client.force_login(user)
+
+    # Define a date range
+    start_date = datetime.now().date() - timedelta(days=60)
+    end_date = datetime.now().date() - timedelta(days=10)
+    
+    GET_params = {
+        'start_date': start_date,
+        'end_date': end_date
+    }
+    response = client.get(reverse('transactions-list'), GET_params)
+
+    qs = response.context['filter'].qs
+
+    # Verify all transactions are within the specified date range
+    for transaction in qs:
+        assert transaction.date >= start_date
+        assert transaction.date <= end_date
+    
+    # Verify that transactions outside the range are excluded
+    all_user_transactions = [t for t in user_transactions if t.user == user]
+    transactions_outside_range = [
+        t for t in all_user_transactions 
+        if t.date < start_date or t.date > end_date
+    ]
+    
+    # If there are transactions outside the range, they should not be in the filtered queryset
+    if transactions_outside_range:
+        filtered_transaction_ids = set(t.id for t in qs)
+        outside_range_ids = set(t.id for t in transactions_outside_range)
+        assert not filtered_transaction_ids.intersection(outside_range_ids)
+
+
+@pytest.mark.django_db
+def test_category_filter(user_transactions, client):
+    user = user_transactions[0].user
+    client.force_login(user)
+
+    # Get first two categories' PKs
+    category_pks = Category.objects.all()[:2].values_list('pk', flat=True)
+    GET_params = {
+        'category': category_pks
+    }
+
+    response = client.get(reverse('transactions-list'), GET_params)
+
+    qs = response.context['filter'].qs
+
+    for transaction in qs:
+        assert transaction.category.pk in category_pks
