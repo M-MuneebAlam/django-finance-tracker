@@ -1,16 +1,14 @@
 {% load widget_tweaks %}
 
 <h1 class="mt-8 mb-4 text-2xl font-bold text-white underline decoration-double decoration-1">
-  Create Transaction
+  Update Transaction
 </h1>
 
-<!-- {{ form.as_div}} -->
-
-<form hx-post="{% url 'create-transaction' %}">
+<form hx-post="{% url 'update-transaction' transaction.pk %}">
   {% include 'tracker/partials/transaction-form.html' %}
 
   <button class="btn btn-success">
-    Add
+    Update
   </button>
 
   <button class="btn btn-error"
