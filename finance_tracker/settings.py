@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "django_filters",
     "django_htmx",
+    "template_partials",
 
     # project apps
     "tracker",
@@ -159,3 +160,5 @@ LOGIN_REDIRECT_URL = 'index'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+PAGE_SIZE = 5
