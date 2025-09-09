@@ -14,5 +14,6 @@ urlpatterns = [
 
     path("transactions/charts", views.transactions_charts, name='transactions-charts'),
 
-    path("transactions/export", views.export, name='export')
+    path("transactions/export", views.export, name='export'),
+    path("transaction/import", views.import_transactions, name='import')
 ]
