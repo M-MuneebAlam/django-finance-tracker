@@ -122,8 +122,8 @@ def transactions_charts(request):
         queryset=Transaction.objects.filter(user=request.user).select_related('category')
     )
     income_expense_bar = plot_income_expense_bar_chart(transaction_filter.qs)
-    category_income_pie = plot_category_pie_chart(transaction_filter.qs.filter(type='income'))
-    category_expense_pie = plot_category_pie_chart(transaction_filter.qs.filter(type='expense'))
+    category_income_pie = plot_category_pie_chart(transaction_filter.qs.filter(type='income'), "Total Income per Category")
+    category_expense_pie = plot_category_pie_chart(transaction_filter.qs.filter(type='expense'), "Total Expense per Category")
     
     context = {
         'filter': transaction_filter,

@@ -21,7 +21,7 @@ def plot_income_expense_bar_chart(qs):
   return fig
 
 
-def plot_category_pie_chart(qs):
+def plot_category_pie_chart(qs, title="Total Amount per Category"):
   count_per_category = (
     qs.order_by('category').values('category')
     .annotate(total=Sum('amount'))
@@ -32,6 +32,6 @@ def plot_category_pie_chart(qs):
   total_amounts = count_per_category.order_by('category').values_list('total', flat=True)
 
   fig = px.pie(values=total_amounts, names=categories)
-  fig.update_layout(title_text='Total Amount per Category')
+  fig.update_layout(title_text=title)
 
   return fig
