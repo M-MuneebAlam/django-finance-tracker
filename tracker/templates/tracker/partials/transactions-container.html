@@ -68,7 +68,8 @@
                   <tr hx-get="{% url 'get-transactions' %}?page={{ transactions.next_page_number}}"
                     hx-trigger="revealed"
                     hx-swap="afterend"
-                    hx-include="#filterform">
+                    hx-include="#filterform"
+                    hx-indicator="#spinner">
                 {% else %}
                   <tr>
                 {% endif %}
@@ -103,6 +104,10 @@
             {% endpartialdef %}
           </tbody>
         </table>
+
+        <div class="flex justify-center items-center mt-4">
+          <span id="spinner" class="loading loading-spinner htmx-indicator"></span>
+        </div>
 
       {% else %}
         <p class="text-2xl text-white">No transactions found.</p>
