@@ -1,25 +1,53 @@
 {% load widget_tweaks %}
 
-<div class="mb-2 form-control text-black">
-    {{ form.type|add_label_class:"label text-white"}}
-    {% render_field form.type class="input" %}
+<!-- Modern Transaction Form Fields -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  
+  <!-- Transaction Type -->
+  <div class="form-control">
+    {{ form.type | add_label_class:"label text-white font-medium" }}
+    <div class="relative">
+      {% render_field form.type class="select w-full bg-secondary-700 text-white border-white/20 focus:border-emerald-400 focus:ring-emerald-400/20 rounded-xl [&>option]:bg-secondary-700 [&>option]:text-white" %}
+    </div>
   </div>
 
-  <div class="mb-2 form-control">
-    {{ form.amount|add_label_class:"label text-white"}}
-    {% render_field form.amount class="input text-black" %}
-
+  <!-- Amount -->
+  <div class="form-control">
+    {{ form.amount | add_label_class:"label text-white font-medium" }}
+    <div class="relative">
+      <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+        <span class="text-white/50 font-semibold">$</span>
+      </div>
+      {% render_field form.amount class="input w-full pl-8 bg-secondary-700 text-white border-white/20 focus:border-emerald-400 focus:ring-emerald-400/20 rounded-xl placeholder-white/50" placeholder="0.00" %}
+    </div>
     {% for error in form.amount.errors %}
-      <p class="text-red-500 text-sm">{{ error }}</p>
+      <div class="flex items-center gap-2 mt-2">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+        </svg>
+        <p class="text-red-400 text-sm">{{ error }}</p>
+      </div>
     {% endfor %}
   </div>
 
-  <div class="mb-2 form-control">
-    {{ form.date|add_label_class:"label text-white"}}
-    {% render_field form.date class="input text-black" %}
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+  
+  <!-- Date -->
+  <div class="form-control">
+    {{ form.date | add_label_class:"label text-white font-medium" }}
+    <div class="relative">
+      {% render_field form.date class="input w-full bg-secondary-700 text-white border-white/20 focus:border-emerald-400 focus:ring-emerald-400/20 rounded-xl placeholder-white/50" %}
+    </div>
   </div>
 
-  <div class="mb-2 form-control">
-    {{ form.category|add_label_class:"label text-white"}}
-    {% render_field form.category class="text-green-500 border-gray-300 rounded focus:ring-green-500" %}
+  <!-- Category -->
+  <div class="form-control">
+    {{ form.category | add_label_class:"label text-white font-medium" }}
+    <div class="relative">
+      {{ form.category }}
+    </div>
   </div>
+
+</div>

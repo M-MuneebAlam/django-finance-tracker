@@ -1,24 +1,40 @@
-<div role="alert" class="alert alert-info">
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-  </svg>
-  <span>{{ message }}</span>
-</div>
-
-<div class="mt-4">
+<!-- Modern Success Message -->
+<div class="backdrop-blur-md bg-white/10 rounded-2xl border border-white/20 p-8 shadow-xl max-w-2xl mx-auto">
   
-  <button class="btn btn-success"
-    hx-get="{% url 'create-transaction' %}"
-    hx-push-url="true"
-    hx-target="#transaction-block">
-    Add another
-  </button>
+  <!-- Success Alert -->
+  <div class="flex items-center gap-4 p-6 bg-emerald-500/20 border border-emerald-400/30 rounded-xl mb-6">
+    <div class="p-2 rounded-lg bg-emerald-500 text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    </div>
+    <div>
+      <h3 class="text-lg font-semibold text-white mb-1">Success!</h3>
+      <p class="text-emerald-100">{{ message }}</p>
+    </div>
+  </div>
 
-  <button class="btn btn-success"
-    hx-get="{% url 'transactions-list' %}"
-    hx-push-url="true"
-    hx-target="#transaction-block">
-    View transactions
-  </button>
+  <!-- Action Buttons -->
+  <div class="flex flex-col sm:flex-row gap-4">
+    <button class="btn flex-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-none hover:from-emerald-600 hover:to-teal-600 rounded-xl shadow-lg transition-all duration-200 transform hover:scale-105"
+            hx-get="{% url 'create-transaction' %}"
+            hx-push-url="true"
+            hx-target="#transaction-block">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+      </svg>
+      Add Another
+    </button>
+
+    <button class="btn flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white border-none hover:from-blue-600 hover:to-purple-600 rounded-xl shadow-lg transition-all duration-200 transform hover:scale-105"
+            hx-get="{% url 'transactions-list' %}"
+            hx-push-url="true"
+            hx-target="#transaction-block">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+      </svg>
+      View Transactions
+    </button>
+  </div>
   
 </div>
