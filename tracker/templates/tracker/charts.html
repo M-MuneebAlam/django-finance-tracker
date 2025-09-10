@@ -1,24 +1,58 @@
 {% extends 'tracker/base.html' %}
 
-
 {% block head_title %}
-  Transactions Charts
+  Financial Analytics - Charts
 {% endblock %}
 
 {% block content %}
+<!-- Modern Charts Container with Glassmorphism -->
+<div class="min-h-screen p-4 md:p-6">
+  
+  <!-- Professional Header Section -->
+  <div class="mb-8">
+    <div class="backdrop-blur-md bg-white/10 rounded-2xl border border-white/20 p-6 shadow-xl">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <div class="p-3 rounded-xl bg-gradient-to-r from-primary-500 to-secondary-500 text-white shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+            </svg>
+          </div>
+          
+          <div>
+            <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">
+              Financial Analytics
+            </h1>
+            <p class="text-white/70 text-lg">
+              Visualize your financial data with interactive charts and insights
+            </p>
+          </div>
+        </div>
+        
+        <!-- Quick Stats Badge -->
+        <div class="hidden md:flex items-center gap-4">
+          <div class="text-center">
+            <div class="text-2xl font-bold text-white">📊</div>
+            <div class="text-sm text-white/70">Analytics</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-white">📈</div>
+            <div class="text-sm text-white/70">Trends</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-white">💡</div>
+            <div class="text-sm text-white/70">Insights</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div class="relative overflow-x-auto text-white" id="transaction-block">
-
-  <h1 class="mt-4 mb-6 text-2xl leading-none tracking-tight text-white md:text-3xl lg:text-4xl flex items-center gap-3">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-    </svg>
-
-    Transactions Charts    
-  </h1>
-
-  {% include 'tracker/partials/charts-container.html' %}
-
+  <!-- Charts Content -->
+  <div class="relative" id="transaction-block">
+    {% include 'tracker/partials/charts-container.html' %}
+  </div>
+  
 </div>
 
 {% endblock %}
