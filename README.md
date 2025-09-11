@@ -48,7 +48,7 @@ _Experience the full-featured finance tracker in action! The deployed applicatio
 
 ### 🚀 Modern UI/UX
 
-- **Responsive design** with Tailwind CSS and DaisyUI components
+- **Modern design** with Tailwind CSS and DaisyUI components
 - **HTMX integration** for seamless, SPA-like user experience
 - **Infinite scrolling** with pagination for large datasets
 - **Loading indicators** and smooth transitions
@@ -155,11 +155,11 @@ class TransactionFilter(django_filters.FilterSet):
 - **Confirmation dialogs** for destructive actions
 - **Success notifications** for user feedback
 
-### Responsive Design
+### User Interface
 
-- **Mobile-first approach** with responsive breakpoints
-- **Touch-friendly interface** elements
-- **Optimized for various screen sizes**
+- **Clean, modern interface** with glassmorphism design
+- **Dark theme** with professional styling
+- **Optimized for desktop experience**
 
 ## 🔧 Installation & Setup
 
@@ -335,6 +335,7 @@ This project demonstrates proficiency in:
 
 ## 📝 Future Enhancements
 
+- **📱 Mobile Responsiveness** - Optimize UI for mobile devices and tablets
 - **Budget planning** and goal setting
 - **Recurring transactions** automation
 - **Multi-currency** support
@@ -345,11 +346,24 @@ This project demonstrates proficiency in:
 
 ## 🤝 Contributing
 
+Contributions are welcome! Here are some areas where help is especially appreciated:
+
+### 🎯 **Priority Contributions:**
+
+- **📱 Mobile Responsiveness** - Help make the UI fully responsive for mobile and tablet devices
+- **🎨 UI/UX Improvements** - Enhance the user interface and experience
+- **🔧 Performance Optimization** - Database queries, caching, and loading speed improvements
+- **🧪 Testing Coverage** - Add more comprehensive tests
+
+### How to Contribute:
+
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
+2. Create a feature branch (`git checkout -b feature/MobileResponsive`)
+3. Commit your changes (`git commit -m 'Add mobile responsiveness to dashboard'`)
+4. Push to the branch (`git push origin feature/MobileResponsive`)
 5. Open a Pull Request
+
+**Note:** The application is currently optimized for desktop experience. Mobile responsiveness contributions are especially welcome!
 
 ## 📄 License
 
@@ -368,12 +382,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 This isn't just a demo - it's a **fully deployed, production-grade application** showcasing:
 
-- ✨ **Modern UI/UX** with glassmorphism design and responsive layouts
+- ✨ **Modern UI/UX** with glassmorphism design and professional styling
 - 📊 **Interactive Data Visualization** using Plotly.js with real-time updates
 - 🔐 **Complete Authentication System** with user registration and secure login
 - 💾 **Robust Data Management** with advanced filtering and CSV export
 - 🚀 **HTMX Integration** for smooth, SPA-like interactions without JavaScript frameworks
-- 📱 **Mobile-First Design** optimized for all devices and screen sizes
+- �️ **Desktop-Optimized Interface** with plans for mobile responsiveness
 
 ### 💡 **Technical Excellence**
 
