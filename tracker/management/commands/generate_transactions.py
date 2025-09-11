@@ -26,10 +26,11 @@ class Command(BaseCommand):
         for category in categories:
             Category.objects.get_or_create(name=category)
 
-        # get the user 
-        user = User.objects.filter(username='muneeb').first()
+        # get the first superuser or create one
+        user = User.objects.filter(is_superuser=True).first()
         if not user:
-            user = User.objects.create_superuser(username='muneeb', password='1234')
+            print("No superuser found. Please create one first using: python manage.py createsuperuser")
+            return
 
         categories = Category.objects.all()
         types = [x[0] for x in Transaction.TRANSACTION_TYPE_CHOICES]
